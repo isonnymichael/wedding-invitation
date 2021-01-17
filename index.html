@@ -10,29 +10,31 @@
     </head>
     <body style="background-color: slategrey;margin:0">
 
+        <section id="first">
+            <div class="content">
+                <div class="container-btn-start">
+                    <button class="btn-start blink" onclick="start()">Buka Undangan</button>
+                </div>
+            </div>
+
+            <!-- <div class="garis"></div> -->
+        </section>
+
         <section>
-            <div class="splide">
+            <div id="splide">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
+                        <li class="splide__slide" style="background-color: slategrey;">
 
-                            <div class="content">
-                                <div class="container-btn-start">
-                                    <button class="btn-start blink" onclick="start()">Buka Undangan</button>
-                                </div>
-                            </div>
+                        </li>
+                        <li class="splide__slide" style="background-color: yellow;">
 
-                            <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
+                            <div class="garis"></i></div>
                         
                         </li>
-                        <li class="splide__slide">
+                        <li class="splide__slide" style="background-color: green;">
 
-                            <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
-                        
-                        </li>
-                        <li class="splide__slide">
-
-                            <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
+                            <div class="garis"></div>
 
                         </li>
                     </ul>
@@ -46,17 +48,32 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 
 <script>
+    var splide = null;
+    
+    document.addEventListener( 'DOMContentLoaded', function () {
+		splide = new Splide( '#splide', {
+            direction: 'ttb',
+            start: 1,
+            arrows: false,
+            height   : '100vh', 
+            pagination: true,
+            drag: true,
+        } );
+
+        splide.on( 'mounted', function () {
+            
+        } );
+
+    } );
+    
     start = function(){
         var audio = new Audio('musics/wedding-bell.mp3');
         audio.play()
         audio.loop = true;
-    }
 
-    document.addEventListener( 'DOMContentLoaded', function () {
-		new Splide( '.splide', {
-            direction: 'ttb',
-            arrows: false,
-            height   : '100vh',
-        } ).mount();
-	} );
+        var first = document.getElementById("first");
+        first.remove();
+        
+        splide.mount();
+    }
 </script>
