@@ -29,6 +29,20 @@
     text-align: center;
 }
 
+.container-btn-start{
+    position:relative;top:80%;text-align: center;
+}
+
+.hati-atas{
+    color:white;
+    position: relative;
+    bottom:8px
+}
+
+.content{
+    height: 100vh;
+}
+
 @keyframes blinker-one {  
     50% { 
         box-shadow: 0 0px 10px 2px rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.2); 
