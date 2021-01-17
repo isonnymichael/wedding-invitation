@@ -4,20 +4,46 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Anggun & Sonny</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body style="background-color: slategrey;margin:0">
-        <div class="content">
-            <div class="container-btn-start">
-                <button class="btn-start blink" onclick="start()">Buka Undangan</button>
-            </div>
-        </div>
 
-        <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
+        <section>
+            <div class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+
+                            <div class="content">
+                                <div class="container-btn-start">
+                                    <button class="btn-start blink" onclick="start()">Buka Undangan</button>
+                                </div>
+                            </div>
+
+                            <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
+                        
+                        </li>
+                        <li class="splide__slide">
+
+                            <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
+                        
+                        </li>
+                        <li class="splide__slide">
+
+                            <div class="garis"><i class="fa fa-heart hati-atas"></i></div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
         
     </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 
 <script>
     start = function(){
@@ -25,4 +51,12 @@
         audio.play()
         audio.loop = true;
     }
+
+    document.addEventListener( 'DOMContentLoaded', function () {
+		new Splide( '.splide', {
+            direction: 'ttb',
+            arrows: false,
+            height   : '100vh',
+        } ).mount();
+	} );
 </script>
