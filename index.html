@@ -4,14 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Anggun & Sonny</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Redressed&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css?v=1.4">
     </head>
     <body style="margin:0">
 
         <section id="first" style="background-color: slategrey">
-            <div class="content">
+            <div onclick="start()" class="content">
+                <div class="container-undangan">
+                    <h1 class="title">A | S</h1>
+                    
+                    <p class="yth">Kepada Yth:</p>
+                    <p class="penerima">Nama Penerima</p>
+                    <img src="line.png" style="width:50%">
+                    <p class="alamat">( Alamat )</p>
+                </div>
                 <div class="container-btn-start">
                     <button class="btn-start blink" onclick="start()">Buka Undangan</button>
                 </div>
@@ -22,13 +33,21 @@
             <div id="splide">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide" style="background-color: slategrey;">
-                             
+                        <li class="splide__slide content">
+                            <div class="container-undangan">
+                                <h1 class="title">A | S</h1>
+
+                                <p class="yth">Kepada Yth:</p>
+                                <p class="penerima">Nama Penerima</p>
+                                <img src="line.png" style="width:50%">
+                                <p class="alamat">( Alamat )</p>
+                            </div>
                         </li>
 
-                        <li id="second" class="splide__slide" style="background-color: green;opacity: 0.3;">
+                        <li id="second" class="splide__slide c-1" style="opacity: 0;">
                             
-                            <h3 class="name">
+                            <p id="k-1" class="k-1">Are Getting Married</p>
+                            <h3 id="name" class="name">
                                 <span class="text-wrapper">
                                   <span class="line line1"></span>
                                   <span class="letters letters-left">Anggun</span>
@@ -37,13 +56,17 @@
                                   <span class="line line2"></span>
                                 </span>
                             </h3>
+                            <p id="k-2" class="k-2">22 . 02 . 2022</p>
 
-                            <div class="garis"></i></div>
+                            <p id="k-3" class="k-3"><i class="fa fa-hand-holding-heart"></i></p>
+                            <p id="k-4" class="k-4">Geser ke Atas</p>
+
+                            <div id="garis" class="garis"></i></div>
                         
                         </li>
                         <li class="splide__slide" style="background-color: blueviolet;">
 
-                            <div class="garis"></div>
+
 
                         </li>
                     </ul>
@@ -73,7 +96,7 @@
         autoplay: false,
         update: function(anim) {
 
-            if(Math.round(anim.progress) >= 70){
+            if(Math.round(anim.progress) >= 60){
                 if (trigered) return;
 
                 trigered = true;
@@ -94,7 +117,7 @@
                     direction: 'ttb',
                     start: 1,
                     arrows: false,
-                    height   : '100vh', 
+                    height   : 'calc(var(--vh, 1vh) * 100)', 
                     pagination: true,
                     drag: true,
                 } );
@@ -103,8 +126,42 @@
                     
                 } );
 
+                splide.on( 'moved', function (newIndex, oldIndex, destIndex) {
+                    if(newIndex == 1){
+                        document.getElementById("name").style.visibility = 'visible';
+                        document.getElementById("garis").style.visibility = 'visible';
+                        document.getElementById("k-1").style.visibility = 'visible';
+                        document.getElementById("k-2").style.visibility = 'visible';
+                        document.getElementById("k-3").style.visibility = 'visible';
+                        document.getElementById("k-4").style.visibility = 'visible';
+                        animationName.restart();
+                        garisAnimation.restart();
+                        k1.restart();
+                        k2.restart();
+                        k3.restart();
+                        k4.restart();
+                    }else{
+                        document.getElementById("name").style.visibility = 'hidden';
+                        document.getElementById("garis").style.visibility = 'hidden';
+                        document.getElementById("garis").style.opacity = 0;
+                        document.getElementById("k-1").style.visibility = 'hidden';
+                        document.getElementById("k-1").style.opacity = 0;
+                        document.getElementById("k-2").style.visibility = 'hidden';
+                        document.getElementById("k-2").style.opacity = 0;
+                        document.getElementById("k-3").style.visibility = 'hidden';
+                        document.getElementById("k-3").style.opacity = 0;
+                        document.getElementById("k-4").style.visibility = 'hidden';
+                        document.getElementById("k-4").style.opacity = 0;
+                    }
+                } );
+
                 splide.mount();
                 animationName.play();
+                garisAnimation.play();
+                k1.play();
+                k2.play();
+                k3.play();
+                k4.play();
             }
         }
     });
@@ -115,7 +172,6 @@
             opacity: [0.5,1],
             scaleX: [0, 1],
             easing: "easeInOutExpo",
-            delay: 500,
             duration: 700
         }).add({
             targets: '.name .line',
@@ -143,13 +199,97 @@
             easing: "easeOutExpo",
             duration: 600,
             offset: '-=600'
-    });
+        });
+    var k1 = anime.timeline({loop: false, autoplay:false})
+        .add({
+            targets: '.k-1',
+            opacity: [0,1],
+            easing: "easeInOutExpo",
+            duration: 700   
+        }).add({
+            targets: '.k-1',
+            translateY: 35,
+            easing: "linear",
+            duration: 700,
+            offset: '-=700'
+        });
+    var k2 = anime.timeline({loop: false, autoplay:false})
+        .add({
+            targets: '.k-2',
+            opacity: [0,1],
+            easing: "easeInOutExpo",
+            delay: 700,
+            duration: 700   
+        }).add({
+            targets: '.k-2',
+            translateY: 30,
+            easing: "linear",
+            duration: 700,
+            offset: '-=700'
+        });
+
+    var k3in = anime({
+            targets: '.k-3',
+            translateY: -10,
+            direction: 'alternate',
+            loop: true,
+            easing: 'easeInOutSine',
+            autoplay:false
+        });
+
+    var k3 = anime.timeline({loop: false, autoplay:false,
+        complete: function(anim) {
+            k3in.play();
+        },begin: function(anim) {
+            k3in.pause();
+        }})
+        .add({
+            targets: '.k-3',
+            opacity: [0,1],
+            easing: "easeInOutExpo",
+            delay: 1200,
+            duration: 400   
+        });
+    var k4 = anime.timeline({loop: false, autoplay:false})
+        .add({
+            targets: '.k-4',
+            opacity: [0,1],
+            easing: "easeInOutExpo",
+            delay: 700,
+            duration: 700   
+        }).add({
+            targets: '.k-4',
+            translateY: 30,
+            easing: "linear",
+            duration: 700,
+            offset: '-=700'
+        });
+
+    var garisAnimation = anime.timeline({loop: false, autoplay:false})
+        .add({
+            targets: '.garis',
+            opacity: [0,1],
+            easing: "easeInOutExpo",
+            duration: 200,
+        });
 
     start = function(){
         firstAimation.play();
 
-        var audio = new Audio('musics/wedding-bell.mp3');
+        var audio = new Audio('musics/ost.mp3');
         audio.play()
         audio.loop = true;
     }
+
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    // We listen to the resize event
+    window.addEventListener('resize', () => {
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
 </script>
